@@ -1,10 +1,10 @@
 package com.modernperfumes.main.model;
 
-public class Perfume {
+public class Perfume  {
     int id;
     String description;
     String sku;
-    double price;
+    String price;
     Integer quantity;
     Integer vendorId;
 
@@ -32,12 +32,24 @@ public class Perfume {
         this.sku = sku;
     }
 
-    public double getPrice() {
+//    public double getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(double price) {
+//        this.price = price;
+//    }
+
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 
     public Integer getQuantity() {
@@ -54,5 +66,26 @@ public class Perfume {
 
     public void setVendorId(int vendorId) {
         this.vendorId = vendorId;
+    }
+
+    public void setProperty(String property, String value) {
+        switch(property) {
+            case "price":
+//                setPrice(Double.valueOf(value));
+                setPrice(value);
+                break;
+            case "sku":
+                setSku(value);
+                break;
+            case "description":
+                setDescription(value);
+                break;
+            case "quantity":
+                setQuantity(Integer.valueOf(value));
+                break;
+            default:
+                break;
+                // code block
+        }
     }
 }

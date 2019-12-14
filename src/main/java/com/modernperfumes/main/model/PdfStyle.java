@@ -6,6 +6,6 @@ public class PdfStyle {
     String description;
     String sku;
     double price;
-    Integer
+//    Integer
 
 }
