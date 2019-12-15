@@ -4,6 +4,7 @@ import com.modernperfumes.main.model.Perfume;
 import com.modernperfumes.main.service.SpreadsheetParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class PriceController {
     private SpreadsheetParser spreadsheetParser;
 
     @PostMapping("/parse")
+    @CrossOrigin(origins = "http://localhost:3001")
     public ResponseEntity<List<Perfume>> parseExcel() {
 
         List<Perfume> perfumes = new ArrayList<>();
