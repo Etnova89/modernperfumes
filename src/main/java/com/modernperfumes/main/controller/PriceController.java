@@ -4,11 +4,10 @@ import com.modernperfumes.main.model.Perfume;
 import com.modernperfumes.main.service.SpreadsheetParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +19,11 @@ public class PriceController {
     private SpreadsheetParser spreadsheetParser;
 
     @PostMapping("/parse")
-    @CrossOrigin(origins = "http://localhost:3001")
-    public ResponseEntity<List<Perfume>> parseExcel() {
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<List<Perfume>> parseExcel(@RequestBody MultipartFile file) throws IOException {
 
         List<Perfume> perfumes = new ArrayList<>();
-        try {
-            perfumes = spreadsheetParser.parseExcel();
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
+            perfumes = spreadsheetParser.parseExcel(file);
         return ResponseEntity.ok().body(perfumes);
     }
 }

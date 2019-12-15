@@ -4,6 +4,7 @@ import com.modernperfumes.main.model.Perfume;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,35 +14,32 @@ import java.util.Map;
 
 @Service
 public class SpreadsheetParser {
-    public List<Perfume> parseExcel() throws IOException {
+    public List<Perfume> parseExcel(MultipartFile file) throws IOException {
         List<Perfume> perfumes = new ArrayList<>();
-        String FILE_NAME = "src/main/resources/Nandansons.xls";
-        try(InputStream stream = new FileInputStream(FILE_NAME)) {
-            HSSFWorkbook myExcelBook = new HSSFWorkbook(new FileInputStream(FILE_NAME));
-            HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
-            Map<Integer, String> columnMapper = new HashMap<Integer, String>();
-            for (int i = 0; i < myExcelSheet.getLastRowNum(); i++) {
-                HSSFRow row = myExcelSheet.getRow(i);
-                Perfume perfume = new Perfume();
-                if(i == 0 ) {
-                    setColumnHeaders(columnMapper, row);
-                } else {
-                    for(int x = 0; x < row.getLastCellNum(); x++) {
-                        if(columnMapper.get(x) != null && !StringUtils.isEmpty(columnMapper.get(x))) {
-                            if(HSSFCell.CELL_TYPE_NUMERIC == row.getCell(x).getCellType()) {
-                                perfume.setProperty(columnMapper.get(x), row.getCell(x).getNumericCellValue());
-                            } else {
-                                if(!StringUtils.isEmpty(row.getCell(x).getStringCellValue())) {
-                                    perfume.setProperty(columnMapper.get(x), row.getCell(x).getStringCellValue());
-                                }
+        HSSFWorkbook myExcelBook = new HSSFWorkbook(file.getInputStream());
+        HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
+        Map<Integer, String> columnMapper = new HashMap<Integer, String>();
+        for (int i = 0; i < myExcelSheet.getLastRowNum(); i++) {
+            HSSFRow row = myExcelSheet.getRow(i);
+            Perfume perfume = new Perfume();
+            if(i == 0 ) {
+                setColumnHeaders(columnMapper, row);
+            } else {
+                for(int x = 0; x < row.getLastCellNum(); x++) {
+                    if(columnMapper.get(x) != null && !StringUtils.isEmpty(columnMapper.get(x))) {
+                        if(HSSFCell.CELL_TYPE_NUMERIC == row.getCell(x).getCellType()) {
+                            perfume.setProperty(columnMapper.get(x), row.getCell(x).getNumericCellValue());
+                        } else {
+                            if(!StringUtils.isEmpty(row.getCell(x).getStringCellValue())) {
+                                perfume.setProperty(columnMapper.get(x), row.getCell(x).getStringCellValue());
                             }
                         }
                     }
-                    perfumes.add(perfume);
                 }
+                perfumes.add(perfume);
             }
-            return perfumes;
         }
+        return perfumes;
     }
 
     private void setColumnHeaders(Map<Integer, String> columnMapper, HSSFRow row) {
