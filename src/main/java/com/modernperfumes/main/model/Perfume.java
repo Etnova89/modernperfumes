@@ -68,13 +68,13 @@ public class Perfume  {
         this.quantity = quantity;
     }
 
-    public int getVendorId() {
+    public Integer getVendorId() {
         return vendorId;
     }
 
-    public void setVendorId(int vendorId) {
-        this.vendorId = vendorId;
-    }
+//    public void setVendorId(int vendorId) {
+//        this.vendorId = vendorId;
+//    }
 
     public String getBrand() {
         return brand;

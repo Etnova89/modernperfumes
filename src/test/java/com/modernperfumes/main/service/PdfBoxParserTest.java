@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PdfBoxParserTest {
 
-    @Test
-    void parsePdf() throws IOException {
-        PdfBoxParser parserTest = new PdfBoxParser();
-        parserTest.parsePdf();
-    }
+//    @Test
+//    void parsePdf() throws IOException {
+//        PdfBoxParser parserTest = new PdfBoxParser();
+//        parserTest.parsePdf();
+//    }
 }

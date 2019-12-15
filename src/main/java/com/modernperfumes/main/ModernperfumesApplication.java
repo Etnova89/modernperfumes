@@ -12,8 +12,8 @@ public class ModernperfumesApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(ModernperfumesApplication.class, args);
-		SpreadsheetParser excelParser = new SpreadsheetParser();
-		excelParser.parseExcel();
+//		SpreadsheetParser excelParser = new SpreadsheetParser();
+//		excelParser.parseExcel();
 //		PdfBoxParser parser = new PdfBoxParser();
 //		parser.parsePdf();
 	}
