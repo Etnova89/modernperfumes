@@ -18,9 +18,10 @@ public class PriceController {
     @Autowired
     private SpreadsheetParser spreadsheetParser;
 
-    @PostMapping("/parse")
+//    @PostMapping("/parse")
+    @RequestMapping(value = "/parse", method = RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<List<Perfume>> parseExcel(@RequestBody MultipartFile file) throws IOException {
+    public ResponseEntity<List<Perfume>> parseExcel(@RequestParam("file") MultipartFile file) throws IOException {
 
         List<Perfume> perfumes = new ArrayList<>();
             perfumes = spreadsheetParser.parseExcel(file);
