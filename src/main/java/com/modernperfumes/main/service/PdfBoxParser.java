@@ -46,15 +46,15 @@ public class PdfBoxParser {
                 propertyMapper.put(2, "price");
                 Perfume perfume = new Perfume();
                 for (String line : lines) {
-                    if(!StringUtils.isEmpty(line) && objectPropertyCounter != 3 && (line.trim().length() > 0)) {
-                        String property = propertyMapper.get(objectPropertyCounter);
-                        perfume.setProperty(property, line);
-                        objectPropertyCounter++;
-                    } else if(objectPropertyCounter == 3) {
-                        perfumes.add(perfume);
-                        perfume = new Perfume();
-                        objectPropertyCounter = 0;
-                    }
+//                    if(!StringUtils.isEmpty(line) && objectPropertyCounter != 3 && (line.trim().length() > 0)) {
+//                        String property = propertyMapper.get(objectPropertyCounter);
+//                        perfume.setProperty(property, line);
+//                        objectPropertyCounter++;
+//                    } else if(objectPropertyCounter == 3) {
+//                        perfumes.add(perfume);
+//                        perfume = new Perfume();
+//                        objectPropertyCounter = 0;
+//                    }
                 }
             }
             return perfumes;

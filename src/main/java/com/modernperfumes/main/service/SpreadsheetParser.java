@@ -27,13 +27,13 @@ public class SpreadsheetParser {
             } else {
                 for(int x = 0; x < row.getLastCellNum(); x++) {
                     if(columnMapper.get(x) != null && !StringUtils.isEmpty(columnMapper.get(x))) {
-                        if(HSSFCell.CELL_TYPE_NUMERIC == row.getCell(x).getCellType()) {
-                            perfume.setProperty(columnMapper.get(x), row.getCell(x).getNumericCellValue());
-                        } else {
-                            if(!StringUtils.isEmpty(row.getCell(x).getStringCellValue())) {
-                                perfume.setProperty(columnMapper.get(x), row.getCell(x).getStringCellValue());
-                            }
-                        }
+//                        if(HSSFCell.CELL_TYPE_NUMERIC == row.getCell(x).getCellType()) {
+//                            perfume.setProperty(columnMapper.get(x), row.getCell(x).getNumericCellValue());
+//                        } else {
+//                            if(!StringUtils.isEmpty(row.getCell(x).getStringCellValue())) {
+//                                perfume.setProperty(columnMapper.get(x), row.getCell(x).getStringCellValue());
+//                            }
+//                        }
                     }
                 }
                 perfumes.add(perfume);
@@ -44,15 +44,15 @@ public class SpreadsheetParser {
 
     private void setColumnHeaders(Map<Integer, String> columnMapper, HSSFRow row) {
         for (int r=0; r < row.getLastCellNum(); r++) {
-            if(Perfume.isPriceAlias(row.getCell(r).getStringCellValue())) {
-                columnMapper.put(r, "price");
-            } else if(Perfume.isDescriptionAlias((row.getCell(r).getStringCellValue()))) {
-                columnMapper.put(r, "description");
-            } else if(Perfume.isSkuAlias((row.getCell(r).getStringCellValue()))) {
-                columnMapper.put(r, "sku");
-            } else if(Perfume.isQuantityAlias((row.getCell(r).getStringCellValue()))) {
-                columnMapper.put(r, "quantity");
-            }
+//            if(Perfume.isPriceAlias(row.getCell(r).getStringCellValue())) {
+//                columnMapper.put(r, "price");
+//            } else if(Perfume.isDescriptionAlias((row.getCell(r).getStringCellValue()))) {
+//                columnMapper.put(r, "description");
+//            } else if(Perfume.isSkuAlias((row.getCell(r).getStringCellValue()))) {
+//                columnMapper.put(r, "sku");
+//            } else if(Perfume.isQuantityAlias((row.getCell(r).getStringCellValue()))) {
+//                columnMapper.put(r, "quantity");
+//            }
         }
     }
 }

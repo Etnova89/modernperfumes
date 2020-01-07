@@ -2,8 +2,10 @@ package com.modernperfumes.main;
 
 import com.modernperfumes.main.service.PdfBoxParser;
 import com.modernperfumes.main.service.SpreadsheetParser;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 
